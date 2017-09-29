@@ -5,6 +5,7 @@
 /datum/game_mode/heist
 	name = "Heist"
 	config_tag = "heist"
+	votable = FALSE
 	required_players = 15
 	required_enemies = 4
 	round_description = "An unidentified bluespace signature has slipped into close sensor range and is approaching!"
