@@ -78,7 +78,7 @@
 		var/mob/living/carbon/human/H = owner
 		to_chat(H, "<span class='alium'>You feel your connection to the hivemind fray and fade away...</span>")
 		H.remove_language("Hivemind")
-		if(H.mind && H.species.get_bodytype(H) != "Xenophage")
+		if(H.mind && H.species.get_bodytype(H) != "Xenomorph")
 			xenomorphs.remove_antagonist(H.mind)
 	..(user)
 
@@ -88,12 +88,12 @@
 	if(owner && ishuman(owner))
 		var/mob/living/carbon/human/H = owner
 		H.add_language("Hivemind")
-		if(H.mind && H.species.get_bodytype(H) != "Xenophage")
+		if(H.mind && H.species.get_bodytype(H) != "Xenomorph")
 			to_chat(H, "<span class='alium'>You feel a sense of pressure as a vast intelligence meshes with your thoughts...</span>")
 			xenomorphs.add_antagonist_mind(H.mind,1, xenomorphs.faction_role_text, xenomorphs.faction_welcome)
 
 	return 1
 
 /obj/item/organ/external/head/unbreakable/xeno
-	eye_icon = "eyes"
-	eye_icon_location = 'icons/mob/human_races/xenos/r_xenos_drone.dmi'
+	eye_icon = null
+	eye_icon_location = null
