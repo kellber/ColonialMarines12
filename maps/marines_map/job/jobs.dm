@@ -15,19 +15,15 @@
 	)
 #undef HUMAN_ONLY_JOBS
 
-	allowed_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/rd, /datum/job/cmo, /datum/job/chief_engineer, /datum/job/hos,
-						/datum/job/liaison, /datum/job/representative, /datum/job/sea, /datum/job/bridgeofficer, /datum/job/solgov_pilot,
-						/datum/job/pathfinder, /datum/job/explorer,
-						/datum/job/senior_engineer, /datum/job/engineer, /datum/job/engineer_contractor, /datum/job/roboticist,
-						/datum/job/officer, /datum/job/warden, /datum/job/detective,
-						/datum/job/senior_doctor, /datum/job/doctor, /datum/job/doctor_contractor,
-						/datum/job/chemist, /datum/job/psychiatrist,
-						/datum/job/qm, /datum/job/cargo_tech, /datum/job/cargo_contractor,
-						/datum/job/janitor, /datum/job/chef, /datum/job/bartender,
-						/datum/job/senior_scientist, /datum/job/nt_pilot, /datum/job/scientist, /datum/job/mining, /datum/job/guard, /datum/job/scientist_assistant,
-						/datum/job/ai, /datum/job/cyborg,
-						/datum/job/crew, /datum/job/assistant,
-						/datum/job/merchant, /datum/job/stowaway
+	allowed_jobs = list(/datum/job/captain, /datum/job/hop, /datum/job/hos,
+						/datum/job/hop/squad_leader/alpha, /datum/job/hop/squad_leader/bravo, /datum/job/hop/squad_leader/charlie, /datum/job/hop/squad_leader/delta,
+						/datum/job/solgov_pilot,
+						/datum/job/engineer, /datum/job/engineer/squad/alpha, /datum/job/engineer/squad/bravo, /datum/job/engineer/squad/charlie, /datum/job/engineer/squad/delta,
+						/datum/job/officer, /datum/job/warden, /datum/job/officer/squad/alpha, /datum/job/officer/squad/bravo, /datum/job/officer/squad/charlie, /datum/job/officer/squad/delta,
+						/datum/job/doctor, /datum/job/doctor/squad/alpha, /datum/job/doctor/squad/bravo, /datum/job/doctor/squad/charlie, /datum/job/doctor/squad/delta,
+						/datum/job/chemist,
+						/datum/job/scientist,
+						/datum/job/assistant
 						)
 
 
@@ -1173,3 +1169,303 @@
 	allowed_ranks = list(/datum/mil_rank/civ/civ)
 	latejoin_at_spawnpoints = 1
 	announced = FALSE
+
+// For the Test
+/datum/job/hop/squad_leader
+	supervisors = "the Commanding Officer and the Executive Officer"
+	selection_color = "#1D1D6C"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/command/XO/marine
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/marine/o5,
+		/datum/mil_rank/marine/o4
+	)
+
+/datum/job/hop/squad_leader/alpha
+	title = "Alpha Squad Leader"
+
+/datum/job/hop/squad_leader/bravo
+	title = "Bravo Squad Leader"
+
+/datum/job/hop/squad_leader/charlie
+	title = "Charlie Squad Leader"
+
+/datum/job/hop/squad_leader/delta
+	title = "Delta Squad Leader"
+
+/datum/job/engineer
+	title = "Engineer"
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = "the Commanding Officer and the Executive Officer"
+	economic_modifier = 5
+	minimal_player_age = 7
+	ideal_character_age = 30
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer
+	allowed_branches = list(
+		/datum/mil_branch/expeditionary_corps,
+		/datum/mil_branch/fleet = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/fleet
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/fleet/e5,
+		/datum/mil_rank/fleet/e4,
+		/datum/mil_rank/fleet/e3,
+		/datum/mil_rank/fleet/e2,
+	)
+
+	access = list(access_engine, access_engine_equip, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
+			            access_teleporter, access_eva, access_tech_storage, access_atmospherics, access_janitor, access_construction,
+			            access_solgov_crew)
+	minimal_access = list()
+
+	software_on_spawn = list(/datum/computer_file/program/power_monitor,
+							 /datum/computer_file/program/supermatter_monitor,
+							 /datum/computer_file/program/alarm_monitor,
+							 /datum/computer_file/program/atmos_control,
+							 /datum/computer_file/program/rcon_console,
+							 /datum/computer_file/program/camera_monitor)
+
+/datum/job/engineer/New()
+	alt_titles = null
+	..()
+
+/datum/job/engineer/squad
+	selection_color = "#46390F"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/marine/e5,
+		/datum/mil_rank/marine/e4,
+		/datum/mil_rank/marine/e3,
+		/datum/mil_rank/marine/e2
+	)
+
+/datum/job/engineer/squad/New()
+	..()
+	if(type != /datum/job/engineer/squad)
+		title += " Squad Engineer"
+		supervisors = "the Commanding Officer, Executive Officer and [title] Squad leader"
+
+/datum/job/engineer/squad/alpha
+	title = "Alpha"
+
+/datum/job/engineer/squad/bravo
+	title = "Bravo"
+
+/datum/job/engineer/squad/charlie
+	title = "Charlie"
+
+/datum/job/engineer/squad/delta
+	title = "Delta"
+
+/datum/job/warden
+	title = "Brig Officer"
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commanding Officer and the Chief of Security"
+	economic_modifier = 5
+	minimal_player_age = 14
+	ideal_character_age = 35
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/security/brig_officer
+	allowed_branches = list(
+		/datum/mil_branch/expeditionary_corps,
+		/datum/mil_branch/fleet = /decl/hierarchy/outfit/job/torch/crew/security/brig_officer/fleet
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/fleet/e8,
+		/datum/mil_rank/fleet/e7,
+		/datum/mil_rank/fleet/e6,
+		/datum/mil_rank/fleet/e5
+	)
+
+	access = list(access_security, access_brig, access_armory, access_forensics_lockers,
+			            access_maint_tunnels, access_external_airlocks, access_emergency_storage,
+			            access_eva, access_sec_doors, access_solgov_crew, access_gun)
+	minimal_access = list()
+
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
+/datum/job/officer
+	title = "Military Police"
+	total_positions = 4
+	spawn_positions = 4
+	supervisors = "the Commanding Officer and the Chief of Security"
+	economic_modifier = 4
+	minimal_player_age = 10
+	ideal_character_age = 25
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/security/maa
+	allowed_branches = list(
+		/datum/mil_branch/expeditionary_corps,
+		/datum/mil_branch/fleet = /decl/hierarchy/outfit/job/torch/crew/security/maa/fleet
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/fleet/e2,
+		/datum/mil_rank/fleet/e3,
+		/datum/mil_rank/fleet/e4
+	)
+
+
+	access = list(access_security, access_brig, access_maint_tunnels,
+						access_external_airlocks, access_emergency_storage,
+			            access_eva, access_sec_doors, access_solgov_crew)
+	minimal_access = list()
+
+	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
+							 /datum/computer_file/program/camera_monitor)
+
+/datum/job/officer/New()
+	alt_titles = null
+	..()
+
+/datum/job/officer/squad
+	selection_color = "#460A0A"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/marine/e2,
+		/datum/mil_rank/marine/e3,
+		/datum/mil_rank/marine/e4
+	)
+
+/datum/job/officer/squad/New()
+	..()
+	if(type != /datum/job/officer/squad)
+		title += " Squad Standard"
+		supervisors = "the Commanding Officer, Executive Officer and [title] Squad leader"
+
+/datum/job/officer/squad/alpha
+	title = "Alpha"
+
+/datum/job/officer/squad/bravo
+	title = "Bravo"
+
+/datum/job/officer/squad/charlie
+	title = "Charlie"
+
+/datum/job/officer/squad/delta
+	title = "Delta"
+
+/datum/job/scientist
+	title = "Scientist"
+	total_positions = 6
+	spawn_positions = 6
+	supervisors = "the Commanding Officer and the Executive Officer"
+	economic_modifier = 10
+	minimal_player_age = 7
+	ideal_character_age = 45
+
+	outfit_type = /decl/hierarchy/outfit/job/torch/passenger/research/scientist
+	allowed_branches = list(/datum/mil_branch/civilian)
+	allowed_ranks = list(/datum/mil_rank/civ/nt)
+
+	access = list(access_tox, access_tox_storage, access_research, access_petrov, access_petrov_helm,
+						access_mining_office, access_mining_station, access_xenobiology, access_guppy_helm,
+						access_xenoarch, access_nanotrasen, access_expedition_shuttle, access_guppy, access_hangar)
+	minimal_access = list()
+
+/datum/job/scientist/New()
+	alt_titles = null
+	..()
+
+/datum/job/chemist
+	title = "Chemist"
+	minimal_player_age = 0
+	total_positions = 1
+	spawn_positions = 1
+	supervisors = "the Commanding Officer and the Executive Officer"
+	economic_modifier = 5
+	ideal_character_age = 40
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/medical/chemist
+	allowed_branches = list(/datum/mil_branch/civilian)
+	allowed_ranks = list(/datum/mil_rank/civ/contractor)
+
+	access = list(access_medical, access_medical_equip, access_chemistry)
+	minimal_access = list()
+
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
+/datum/job/doctor
+	title = "Corpsman"
+	minimal_player_age = 0
+	total_positions = 3
+	spawn_positions = 3
+	supervisors = "the Commanding Officer and the Executive Officer"
+	economic_modifier = 7
+	ideal_character_age = 40
+	alt_titles = list(
+		"Field Medic" = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic,
+		"Medical Technician",
+		"Nurse")
+	outfit_type = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/fleet
+	allowed_branches = list(
+		/datum/mil_branch/expeditionary_corps = /decl/hierarchy/outfit/job/torch/crew/medical/doctor,
+		/datum/mil_branch/fleet
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/fleet/e3,
+		/datum/mil_rank/fleet/e4,
+		/datum/mil_rank/fleet/e5,
+		/datum/mil_rank/fleet/e6
+	)
+
+	access = list(access_medical, access_morgue, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
+			            access_eva, access_surgery, access_medical_equip, access_solgov_crew)
+	minimal_access = list()
+
+	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
+							 /datum/computer_file/program/camera_monitor)
+
+/datum/job/doctor/squad
+	selection_color = "#002D2B"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps
+	)
+	allowed_ranks = list(
+		/datum/mil_rank/marine/e3,
+		/datum/mil_rank/marine/e4,
+		/datum/mil_rank/marine/e5,
+		/datum/mil_rank/marine/e6
+	)
+
+/datum/job/doctor/squad/New()
+	alt_titles = null
+	..()
+	if(type != /datum/job/doctor/squad)
+		title += " Squad Field Medic"
+		supervisors = "the Commanding Officer, Executive Officer and [title] Squad leader"
+
+/datum/job/doctor/squad/alpha
+	title = "Alpha"
+
+/datum/job/doctor/squad/bravo
+	title = "Bravo"
+
+/datum/job/doctor/squad/charlie
+	title = "Charlie"
+
+/datum/job/doctor/squad/delta
+	title = "Delta"
+
+/datum/job/assistant
+	title = "Marine"
+	total_positions = -1
+	spawn_positions = -1
+	supervisors = "the Commanding Officer and the Executive Officer"
+	selection_color = "#515151"
+	economic_modifier = 1
+	outfit_type = /decl/hierarchy/outfit/job/torch/passenger/passenger
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps
+		)
+	allowed_ranks = list(
+		/datum/mil_rank/marine/e2
+	)
+
+/datum/job/assistant/New()
+	alt_titles = null
+	..()
