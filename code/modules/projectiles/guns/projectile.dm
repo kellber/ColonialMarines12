@@ -81,6 +81,8 @@
 	if (!chambered) return
 
 	switch(handle_casings)
+		if(CLEAR_CASINGS) //delete casing
+			qdel(chambered)
 		if(EJECT_CASINGS) //eject casing onto ground.
 			chambered.loc = get_turf(src)
 		if(CYCLE_CASINGS) //cycle the casing back to the end.
