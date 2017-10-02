@@ -66,7 +66,7 @@ GLOBAL_VAR_INIT(detector, "parent=detectorwindow;type=MAP;pos=0,0;size=128x128;a
 				var/obj/machinery/door/D = target
 				if(D.operating)
 					detected[D] = TRUE
-			//else if(isliving(target) && istype(get_equipped_item(slot_wear_suit), /obj/item/clothing/suit/storage/marine2)) until clothes port or smth.
+			//else if(isliving(target) && istype(get_equipped_item(slot_wear_suit), /obj/item/clothing/suit/storage/marine_m3)) until clothes port or smth.
 			//	continue
 			else
 				detected[target] = target.loc
