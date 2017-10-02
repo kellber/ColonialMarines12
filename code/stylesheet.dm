@@ -59,6 +59,12 @@ em						{font-style: normal;font-weight: bold;}
 .srvradio				{color: #6eaa2c;}
 .expradio				{color: #a3a332;}
 
+/* Marine Radio Channels */
+.alpradio				{color: #660000;}
+.braradio				{color: #808000;}
+.charadio				{color: #800080;}
+.delradio				{color: #0000ff;}
+
 /* Miscellaneous */
 .name					{font-weight: bold;}
 .say					{}

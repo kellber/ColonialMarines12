@@ -65,3 +65,60 @@
 	icon_state = "com_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/pathfinder
+
+
+/obj/item/device/radio/headset/heads/marine_alpha
+	name = "marine alpha leader's headset"
+	desc = "This is used by the marine alpha squad leader."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/marine_alpha
+
+/obj/item/device/radio/headset/heads/marine_bravo_leader
+	name = "marine bravo leader's headset"
+	desc = "This is used by the marine bravo squad leader."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/marine_bravo
+
+/obj/item/device/radio/headset/heads/marine_charlie_leader
+	name = "marine charlie leader's headset"
+	desc = "This is used by the marine charlie squad leader."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/marine_charlie
+
+/obj/item/device/radio/headset/heads/marine_delta_leader
+	name = "marine delta leader's headset"
+	desc = "This is used by the marine delta squad leader."
+	icon_state = "cargo_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/heads/marine_delta
+
+/obj/item/device/radio/headset/marine_alpha
+	name = "marine alpha headset"
+	desc = "This is used by alpha squad members."
+	icon_state = "sec_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/marine_alpha
+
+/obj/item/device/radio/headset/marine_bravo
+	name = "marine bravo headset"
+	desc = "This is used by bravo squad members."
+	icon_state = "eng_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/marine_bravo
+
+/obj/item/device/radio/headset/marine_charlie
+	name = "marine charlie headset"
+	desc = "This is used by charlie squad members."
+	icon_state = "rob_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/marine_charlie
+
+/obj/item/device/radio/headset/marine_delta
+	name = "marine delta headset"
+	desc = "This is used by delta squad members."
+	icon_state = "com_headset"
+	item_state = "headset"
+	ks2type = /obj/item/device/encryptionkey/marine_delta

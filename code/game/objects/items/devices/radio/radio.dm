@@ -526,7 +526,7 @@
 	for (var/ch_name in channels)
 		channels[ch_name] = 0
 	..()
-	
+
 /obj/item/device/radio/proc/recalculateChannels()
 	return
 
@@ -555,7 +555,7 @@
 		CRASH("Invalid spawn location: [log_info_line(loc)]")
 	..()
 	myborg = loc
-	
+
 /obj/item/device/radio/borg/Initialize()
 	. = ..()
 	recalculateChannels()
@@ -727,7 +727,8 @@
 	invisibility = 101
 	listening = 0
 	canhear_range = 0
-	channels=list("Engineering" = 1, "Security" = 1, "Medical" = 1, "Command" = 1, "Common" = 1, "Science" = 1, "Supply" = 1, "Service" = 1, "Exploration" = 1)
+	channels=list("Engineering" = 1, "Security" = 1, "Medical" = 1, "Command" = 1, "Common" = 1, "Science" = 1, "Supply" = 1, "Service" = 1, "Exploration" = 1,
+		"Alpha Squad" = 1, "Bravo Squad" = 1, "Charlie Squad" = 1, "Delta Squad" = 1)
 
 /obj/item/device/radio/announcer/Destroy()
 	crash_with("attempt to delete a [src.type] detected, and prevented.")

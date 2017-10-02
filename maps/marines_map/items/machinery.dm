@@ -21,20 +21,20 @@
  	"receiverA", "broadcasterA")
 
 /obj/machinery/telecomms/receiver/preset_right
-	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ)
+	freq_listening = list(AI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ, EXP_FREQ, MAR_ALPHA, MAR_BRAVO, MAR_CHARLIE, MAR_DELTA)
 
 /obj/machinery/telecomms/bus/preset_two
-	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ)
+	freq_listening = list(SUP_FREQ, SRV_FREQ, EXP_FREQ, MAR_ALPHA, MAR_BRAVO, MAR_CHARLIE, MAR_DELTA)
 	autolinkers = list("processor2", "supply", "service", "exploration", "unused")
 
 /obj/machinery/telecomms/server/presets/service
 	id = "Service and Exploration Server"
-	freq_listening = list(SRV_FREQ, EXP_FREQ)
+	freq_listening = list(SRV_FREQ, EXP_FREQ, MAR_ALPHA, MAR_BRAVO, MAR_CHARLIE, MAR_DELTA)
 	autolinkers = list("service", "exploration")
 
 /obj/machinery/telecomms/server/presets/exploration
 	id = "Utility Server"
-	freq_listening = list(EXP_FREQ)
+	freq_listening = list(EXP_FREQ, MAR_ALPHA, MAR_BRAVO, MAR_CHARLIE, MAR_DELTA)
 	autolinkers = list("Exploration")
 
 // Suit cyclers and storage

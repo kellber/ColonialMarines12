@@ -18,6 +18,11 @@ var/list/department_radio_keys = list(
 	  ":z" = "Entertainment",".z" = "Entertainment",
 	  ":y" = "Exploration",		".y" = "Exploration",
 
+	  ":q" = "Alpha Squad",		".q" = "Alpha Squad",
+	  ":b" = "Bravo Squad",		".b" = "Bravo Squad",
+	  ":f" = "Charlie Squad",	".f" = "Charlie Squad",
+	  ":d" = "Delta Squad",		".d" = "Delta Squad",
+
 	  ":R" = "right ear",	".R" = "right ear",
 	  ":L" = "left ear",	".L" = "left ear",
 	  ":I" = "intercom",	".I" = "intercom",
@@ -35,6 +40,11 @@ var/list/department_radio_keys = list(
 	  ":P" = "AI Private",	".P" = "AI Private",
 	  ":Z" = "Entertainment",".Z" = "Entertainment",
 	  ":Y" = "Exploration",		".Y" = "Exploration",
+
+	  ":Q" = "Alpha Squad",		".Q" = "Alpha Squad",
+	  ":B" = "Bravo Squad",		".B" = "Bravo Squad",
+	  ":F" = "Charlie Squad",	".F" = "Charlie Squad",
+	  ":D" = "Delta Squad",		".D" = "Delta Squad",
 
 	  //kinda localization -- rastaf0
 	  //same keys as above, but on russian keyboard layout. This file uses cp1251 as encoding.
