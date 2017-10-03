@@ -123,6 +123,14 @@ datum/announcement/proc/NewsCast(message as text, message_title as text)
 	if (security_state.current_security_level_is_same_or_higher_than(security_state.high_security_level))
 		return "Common"
 
+	if(findtext(job.title, "Alpha"))
+		return "Alpha Squad"
+	if(findtext(job.title, "Bravo"))
+		return "Bravo Squad"
+	if(findtext(job.title, "Charlie"))
+		return "Charlie Squad"
+	if(findtext(job.title, "Delta"))
+		return "Delta Squad"
 	if(job.department_flag & (COM | CIV | MSC))
 		return "Common"
 	if(job.department_flag & SUP)

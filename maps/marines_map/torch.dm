@@ -36,6 +36,7 @@
 	#include "structures/signs.dm"
 	#include "structures/closets/command.dm"
 	#include "structures/closets/engineering.dm"
+	#include "structures/closets/marine.dm"
 	#include "structures/closets/medical.dm"
 	#include "structures/closets/misc.dm"
 	#include "structures/closets/research.dm"

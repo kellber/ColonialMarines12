@@ -1543,3 +1543,21 @@
 /area/outpost/abandoned
 	name = "Abandoned Outpost"
 	icon_state = "dark"
+
+// Marine Prep
+
+/area/squad_alpha
+	name = "Alpha Prep"
+	icon_state = "red"
+
+/area/squad_bravo
+	name = "Bravo Prep"
+	icon_state = "yellow"
+
+/area/squad_charlie
+	name = "Charlie Prep"
+	icon_state = "purple"
+
+/area/squad_delta
+	name = "Delta Prep"
+	icon_state = "blueold"

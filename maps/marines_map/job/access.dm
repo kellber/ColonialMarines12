@@ -144,3 +144,129 @@
 
 /datum/access/network
 	region = ACCESS_REGION_COMMAND
+
+/***************
+* MARINES PREP *
+***************/
+/var/const/access_alpha_prep = 301
+/datum/access/alpha_prep
+	id = access_alpha_prep
+	desc = "Alpha Preparation"
+	region = ACCESS_REGION_ALPHA
+
+/var/const/access_alpha_mprep = 302
+/datum/access/alpha_mprep
+	id = access_alpha_mprep
+	desc = "Alpha Medical Preparation"
+	region = ACCESS_REGION_ALPHA
+
+/var/const/access_alpha_eprep = 303
+/datum/access/alpha_eprep
+	id = access_alpha_eprep
+	desc = "Alpha Engineering Preparation"
+	region = ACCESS_REGION_ALPHA
+
+/var/const/access_alpha_sprep = 304
+/datum/access/alpha_sprep
+	id = access_alpha_sprep
+	desc = "Alpha Standard Preparation"
+	region = ACCESS_REGION_ALPHA
+
+/var/const/access_alpha_leader = 305
+/datum/access/alpha_leader
+	id = access_alpha_leader
+	desc = "Alpha Leader Preparation"
+	region = ACCESS_REGION_ALPHA
+
+
+/var/const/access_bravo_prep = 306
+/datum/access/bravo_prep
+	id = access_bravo_prep
+	desc = "Bravo Preparation"
+	region = ACCESS_REGION_BRAVO
+
+/var/const/access_bravo_mprep = 307
+/datum/access/bravo_mprep
+	id = access_bravo_mprep
+	desc = "Bravo Medical Preparation"
+	region = ACCESS_REGION_BRAVO
+
+/var/const/access_bravo_eprep = 308
+/datum/access/bravo_eprep
+	id = access_bravo_eprep
+	desc = "Bravo Engineering Preparation"
+	region = ACCESS_REGION_BRAVO
+
+/var/const/access_bravo_sprep = 309
+/datum/access/bravo_sprep
+	id = access_bravo_sprep
+	desc = "Bravo Standard Preparation"
+	region = ACCESS_REGION_BRAVO
+
+/var/const/access_bravo_leader = 310
+/datum/access/bravo_leader
+	id = access_bravo_leader
+	desc = "Bravo Leader Preparation"
+	region = ACCESS_REGION_BRAVO
+
+
+/var/const/access_charlie_prep = 311
+/datum/access/charlie_prep
+	id = access_charlie_prep
+	desc = "Charlie Preparation"
+	region = ACCESS_REGION_CHARLIE
+
+/var/const/access_charlie_mprep = 312
+/datum/access/charlie_mprep
+	id = access_charlie_mprep
+	desc = "Charlie Medical Preparation"
+	region = ACCESS_REGION_CHARLIE
+
+/var/const/access_charlie_eprep = 313
+/datum/access/charlie_eprep
+	id = access_charlie_eprep
+	desc = "Charlie Engineering Preparation"
+	region = ACCESS_REGION_CHARLIE
+
+/var/const/access_charlie_sprep = 314
+/datum/access/charlie_sprep
+	id = access_charlie_sprep
+	desc = "Charlie Standard Preparation"
+	region = ACCESS_REGION_CHARLIE
+
+/var/const/access_charlie_leader = 315
+/datum/access/charlie_leader
+	id = access_charlie_leader
+	desc = "Charlie Leader Preparation"
+	region = ACCESS_REGION_CHARLIE
+
+
+/var/const/access_delta_prep = 316
+/datum/access/delta_prep
+	id = access_delta_prep
+	desc = "Delta Preparation"
+	region = ACCESS_REGION_DELTA
+
+/var/const/access_delta_mprep = 317
+/datum/access/delta_mprep
+	id = access_delta_mprep
+	desc = "Delta Medical Preparation"
+	region = ACCESS_REGION_DELTA
+
+/var/const/access_delta_eprep = 318
+/datum/access/delta_eprep
+	id = access_delta_eprep
+	desc = "Delta Engineering Preparation"
+	region = ACCESS_REGION_DELTA
+
+/var/const/access_delta_sprep = 319
+/datum/access/delta_sprep
+	id = access_delta_sprep
+	desc = "Delta Standard Preparation"
+	region = ACCESS_REGION_DELTA
+
+/var/const/access_delta_leader = 320
+/datum/access/delta_leader
+	id = access_delta_leader
+	desc = "Delta Leader Preparation"
+	region = ACCESS_REGION_DELTA

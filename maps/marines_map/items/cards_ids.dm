@@ -13,6 +13,20 @@
 	item_state = "silver_id"
 	job_access_type = /datum/job/hop
 
+
+/obj/item/weapon/card/id/torch/silver/alpha
+	job_access_type = /datum/job/hop/squad_leader/alpha
+
+/obj/item/weapon/card/id/torch/silver/bravo
+	job_access_type = /datum/job/hop/squad_leader/bravo
+
+/obj/item/weapon/card/id/torch/silver/charlie
+	job_access_type = /datum/job/hop/squad_leader/charlie
+
+/obj/item/weapon/card/id/torch/silver/delta
+	job_access_type = /datum/job/hop/squad_leader/delta
+
+
 /obj/item/weapon/card/id/torch/gold
 	desc = "A golden identification card belonging to the Commanding Officer."
 	icon_state = "gold"
@@ -50,6 +64,20 @@
 /obj/item/weapon/card/id/torch/crew/medical
 	job_access_type = /datum/job/doctor
 
+
+/obj/item/weapon/card/id/torch/crew/medical/alpha
+	job_access_type = /datum/job/doctor/squad/alpha
+
+/obj/item/weapon/card/id/torch/crew/medical/bravo
+	job_access_type = /datum/job/doctor/squad/bravo
+
+/obj/item/weapon/card/id/torch/crew/medical/charlie
+	job_access_type = /datum/job/doctor/squad/charlie
+
+/obj/item/weapon/card/id/torch/crew/medical/delta
+	job_access_type = /datum/job/doctor/squad/delta
+
+
 /obj/item/weapon/card/id/torch/crew/medical/senior
 	job_access_type = /datum/job/senior_doctor
 
@@ -69,6 +97,20 @@
 /obj/item/weapon/card/id/torch/crew/security
 	job_access_type = /datum/job/officer
 
+
+/obj/item/weapon/card/id/torch/crew/security/alpha
+	job_access_type = /datum/job/officer/squad/alpha
+
+/obj/item/weapon/card/id/torch/crew/security/bravo
+	job_access_type = /datum/job/officer/squad/bravo
+
+/obj/item/weapon/card/id/torch/crew/security/charlie
+	job_access_type = /datum/job/officer/squad/charlie
+
+/obj/item/weapon/card/id/torch/crew/security/delta
+	job_access_type = /datum/job/officer/squad/delta
+
+
 /obj/item/weapon/card/id/torch/crew/security/brigofficer
 	job_access_type = /datum/job/warden
 
@@ -81,6 +123,20 @@
 
 /obj/item/weapon/card/id/torch/crew/engineering
 	job_access_type = /datum/job/engineer
+
+
+/obj/item/weapon/card/id/torch/crew/engineering/alpha
+	job_access_type = /datum/job/engineer/squad/alpha
+
+/obj/item/weapon/card/id/torch/crew/engineering/bravo
+	job_access_type = /datum/job/engineer/squad/bravo
+
+/obj/item/weapon/card/id/torch/crew/engineering/charlie
+	job_access_type = /datum/job/engineer/squad/charlie
+
+/obj/item/weapon/card/id/torch/crew/engineering/delta
+	job_access_type = /datum/job/engineer/squad/delta
+
 
 /obj/item/weapon/card/id/torch/crew/engineering/senior
 	job_access_type = /datum/job/senior_engineer

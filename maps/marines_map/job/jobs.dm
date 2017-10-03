@@ -1171,6 +1171,9 @@
 	announced = FALSE
 
 // For the Test
+
+#define ACCESS_MARINE_SHUTTLE_CREW list(access_hangar, access_aquila, access_solgov_crew, access_expedition_shuttle)
+
 /datum/job/hop/squad_leader
 	supervisors = "the Commanding Officer and the Executive Officer"
 	selection_color = "#1D1D6C"
@@ -1182,17 +1185,53 @@
 		/datum/mil_rank/marine/o4
 	)
 
+/datum/job/hop/squad_leader/New()
+	access |= ACCESS_MARINE_SHUTTLE_CREW
+	..()
+
 /datum/job/hop/squad_leader/alpha
 	title = "Alpha Squad Leader"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/command/XO/marine/alpha
+	)
+
+/datum/job/hop/squad_leader/alpha/New()
+	access += list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
+	minimal_access += list(access_alpha_prep, access_alpha_mprep, access_alpha_eprep, access_alpha_sprep, access_alpha_leader)
+	..()
 
 /datum/job/hop/squad_leader/bravo
 	title = "Bravo Squad Leader"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/command/XO/marine/bravo
+	)
+
+/datum/job/hop/squad_leader/bravo/New()
+	access += list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
+	minimal_access += list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
+	..()
 
 /datum/job/hop/squad_leader/charlie
 	title = "Charlie Squad Leader"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/command/XO/marine/charlie
+	)
+
+/datum/job/hop/squad_leader/charlie/New()
+	access += list(access_charlie_prep, access_charlie_mprep, access_charlie_eprep, access_charlie_sprep, access_charlie_leader)
+	minimal_access += list(access_bravo_prep, access_bravo_mprep, access_bravo_eprep, access_bravo_sprep, access_bravo_leader)
+	..()
 
 /datum/job/hop/squad_leader/delta
 	title = "Delta Squad Leader"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/command/XO/marine/delta
+	)
+
+/datum/job/hop/squad_leader/delta/New()
+	access += list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
+	minimal_access += list(access_delta_prep, access_delta_mprep, access_delta_eprep, access_delta_sprep, access_delta_leader)
+	..()
 
 /datum/job/engineer
 	title = "Engineer"
@@ -1217,7 +1256,9 @@
 	access = list(access_engine, access_engine_equip, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
 			            access_teleporter, access_eva, access_tech_storage, access_atmospherics, access_janitor, access_construction,
 			            access_solgov_crew)
-	minimal_access = list()
+	minimal_access = list(access_engine, access_engine_equip, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
+			            access_teleporter, access_eva, access_tech_storage, access_atmospherics, access_janitor, access_construction,
+			            access_solgov_crew)
 
 	software_on_spawn = list(/datum/computer_file/program/power_monitor,
 							 /datum/computer_file/program/supermatter_monitor,
@@ -1231,6 +1272,8 @@
 	..()
 
 /datum/job/engineer/squad
+	total_positions = 2
+	spawn_positions = 2
 	selection_color = "#46390F"
 	allowed_branches = list(
 		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine
@@ -1243,6 +1286,7 @@
 	)
 
 /datum/job/engineer/squad/New()
+	access |= ACCESS_MARINE_SHUTTLE_CREW
 	..()
 	if(type != /datum/job/engineer/squad)
 		title += " Squad Engineer"
@@ -1250,15 +1294,47 @@
 
 /datum/job/engineer/squad/alpha
 	title = "Alpha"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/alpha
+	)
+
+/datum/job/engineer/squad/alpha/New()
+	access += list(access_alpha_prep, access_alpha_eprep)
+	minimal_access += list(access_alpha_prep, access_alpha_eprep)
+	..()
 
 /datum/job/engineer/squad/bravo
 	title = "Bravo"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/bravo
+	)
+
+/datum/job/engineer/squad/bravo/New()
+	access += list(access_bravo_prep, access_bravo_eprep)
+	minimal_access += list(access_bravo_prep, access_bravo_eprep)
+	..()
 
 /datum/job/engineer/squad/charlie
 	title = "Charlie"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/charlie
+	)
+
+/datum/job/engineer/squad/charlie/New()
+	access += list(access_charlie_prep, access_charlie_eprep)
+	minimal_access += list(access_charlie_prep, access_charlie_eprep)
+	..()
 
 /datum/job/engineer/squad/delta
 	title = "Delta"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/delta
+	)
+
+/datum/job/engineer/squad/delta/New()
+	access += list(access_delta_prep, access_delta_eprep)
+	minimal_access += list(access_delta_prep, access_delta_eprep)
+	..()
 
 /datum/job/warden
 	title = "Brig Officer"
@@ -1311,7 +1387,9 @@
 	access = list(access_security, access_brig, access_maint_tunnels,
 						access_external_airlocks, access_emergency_storage,
 			            access_eva, access_sec_doors, access_solgov_crew)
-	minimal_access = list()
+	minimal_access = list(access_security, access_brig, access_maint_tunnels,
+						access_external_airlocks, access_emergency_storage,
+			            access_eva, access_sec_doors, access_solgov_crew)
 
 	software_on_spawn = list(/datum/computer_file/program/digitalwarrant,
 							 /datum/computer_file/program/camera_monitor)
@@ -1321,6 +1399,8 @@
 	..()
 
 /datum/job/officer/squad
+	total_positions = 8
+	spawn_positions = 8
 	selection_color = "#460A0A"
 	allowed_branches = list(
 		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine
@@ -1332,6 +1412,7 @@
 	)
 
 /datum/job/officer/squad/New()
+	access |= ACCESS_MARINE_SHUTTLE_CREW
 	..()
 	if(type != /datum/job/officer/squad)
 		title += " Squad Standard"
@@ -1339,15 +1420,47 @@
 
 /datum/job/officer/squad/alpha
 	title = "Alpha"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine/alpha
+	)
+
+/datum/job/officer/squad/alpha/New()
+	access += list(access_alpha_prep, access_alpha_sprep)
+	minimal_access += list(access_alpha_prep, access_alpha_sprep)
+	..()
 
 /datum/job/officer/squad/bravo
 	title = "Bravo"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine/bravo
+	)
+
+/datum/job/officer/squad/bravo/New()
+	access += list(access_bravo_prep, access_bravo_sprep)
+	minimal_access += list(access_bravo_prep, access_bravo_sprep)
+	..()
 
 /datum/job/officer/squad/charlie
 	title = "Charlie"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine/charlie
+	)
+
+/datum/job/officer/squad/charlie/New()
+	access += list(access_charlie_prep, access_charlie_sprep)
+	minimal_access += list(access_charlie_prep, access_charlie_sprep)
+	..()
 
 /datum/job/officer/squad/delta
 	title = "Delta"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/security/maa/marine/delta
+	)
+
+/datum/job/officer/squad/delta/New()
+	access += list(access_delta_prep, access_delta_sprep)
+	minimal_access += list(access_delta_prep, access_delta_sprep)
+	..()
 
 /datum/job/scientist
 	title = "Scientist"
@@ -1415,12 +1528,15 @@
 
 	access = list(access_medical, access_morgue, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
 			            access_eva, access_surgery, access_medical_equip, access_solgov_crew)
-	minimal_access = list()
+	minimal_access = list(access_medical, access_morgue, access_maint_tunnels, access_external_airlocks, access_emergency_storage,
+			            access_eva, access_surgery, access_medical_equip, access_solgov_crew)
 
 	software_on_spawn = list(/datum/computer_file/program/suit_sensors,
 							 /datum/computer_file/program/camera_monitor)
 
 /datum/job/doctor/squad
+	total_positions = 2
+	spawn_positions = 2
 	selection_color = "#002D2B"
 	allowed_branches = list(
 		/datum/mil_branch/marine_corps
@@ -1433,6 +1549,7 @@
 	)
 
 /datum/job/doctor/squad/New()
+	access |= ACCESS_MARINE_SHUTTLE_CREW
 	alt_titles = null
 	..()
 	if(type != /datum/job/doctor/squad)
@@ -1441,15 +1558,47 @@
 
 /datum/job/doctor/squad/alpha
 	title = "Alpha"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/alpha
+	)
+
+/datum/job/doctor/squad/alpha/New()
+	access += list(access_alpha_prep, access_alpha_mprep)
+	minimal_access += list(access_alpha_prep, access_alpha_mprep)
+	..()
 
 /datum/job/doctor/squad/bravo
 	title = "Bravo"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/bravo
+	)
+
+/datum/job/doctor/squad/bravo/New()
+	access += list(access_bravo_prep, access_bravo_mprep)
+	minimal_access += list(access_bravo_prep, access_bravo_mprep)
+	..()
 
 /datum/job/doctor/squad/charlie
 	title = "Charlie"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/charlie
+	)
+
+/datum/job/doctor/squad/charlie/New()
+	access += list(access_charlie_prep, access_charlie_mprep)
+	minimal_access += list(access_charlie_prep, access_charlie_mprep)
+	..()
 
 /datum/job/doctor/squad/delta
 	title = "Delta"
+	allowed_branches = list(
+		/datum/mil_branch/marine_corps = /decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/delta
+	)
+
+/datum/job/doctor/squad/delta/New()
+	access += list(access_delta_prep, access_delta_mprep)
+	minimal_access += list(access_delta_prep, access_delta_mprep)
+	..()
 
 /datum/job/assistant
 	title = "Marine"

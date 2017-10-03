@@ -54,3 +54,39 @@
 	MASK_TYPE = /obj/item/clothing/mask/breath
 	req_access = list(access_explorer)
 	islocked = 1
+
+/obj/machinery/vending/marine
+	name = "EqMarTech"
+	desc = "A marine equipment vendor."
+	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
+	icon_state = "robotics"
+	icon_deny = "robotics-deny"
+	vend_delay = 14
+	req_one_access = list(access_alpha_prep, access_bravo_prep, access_charlie_prep, access_delta_prep)
+	products = list(
+		/obj/item/weapon/gun/projectile/automatic/m41a = 5,
+		/obj/item/weapon/gun/projectile/m4a3 = 5,
+
+		/obj/item/ammo_magazine/m41 = 25,
+		/obj/item/ammo_magazine/m4a3 = 25,
+
+		/obj/item/weapon/material/kitchen/utensil/knife/boot = 5,
+
+		/obj/item/device/flashlight/flare = 10,
+		/obj/item/device/flashlight = 2
+		)
+
+/obj/machinery/vending/marine_med
+	name = "MedMarTech"
+	desc = "A marine medical drug dispenser."
+	icon_state = "med"
+	icon_deny = "med-deny"
+	icon_vend = "med-vend"
+	vend_delay = 18
+	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
+	req_one_access = list(access_alpha_prep, access_bravo_prep, access_charlie_prep, access_delta_prep)
+	products = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox = 10,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/pain = 10
+		)
+	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.

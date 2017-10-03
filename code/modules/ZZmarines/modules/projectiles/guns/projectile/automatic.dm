@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/projectile/automatic/m41
+/obj/item/weapon/gun/projectile/automatic/m41a
 	name = "M41A MK2"
 	desc = "M41A Pulse Rifle MK2. The standard issue rifle of the Colonial Marines. Commonly carried by most combat personnel. Uses 10mm special ammunition."
 	icon = 'icons/marines/marine_weapons.dmi'
@@ -24,7 +24,7 @@
 		list(mode_name="short bursts",   burst=5, fire_delay=null, move_delay=6,    one_hand_penalty=6, burst_accuracy=list(0,-1,-2,-3,-3), dispersion=list(0.6, 1.0, 1.2, 1.2, 1.5)),
 		)
 
-/obj/item/weapon/gun/projectile/automatic/m41/update_icon()
+/obj/item/weapon/gun/projectile/automatic/m41a/update_icon()
 	icon_state = (ammo_magazine)? "m41a" : "m41a-empty"
 	..()
 

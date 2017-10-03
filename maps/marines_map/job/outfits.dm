@@ -81,6 +81,24 @@ Keeping them simple for now, just spawning with basic EC uniforms, and pretty mu
 	head = /obj/item/clothing/head/utility/marine
 	shoes = /obj/item/clothing/shoes/jungleboots
 
+
+/decl/hierarchy/outfit/job/torch/crew/command/XO/marine/alpha
+	l_ear = /obj/item/device/radio/headset/heads/marine_alpha
+	id_type = /obj/item/weapon/card/id/torch/silver/alpha
+
+/decl/hierarchy/outfit/job/torch/crew/command/XO/marine/bravo
+	l_ear = /obj/item/device/radio/headset/heads/marine_bravo
+	id_type = /obj/item/weapon/card/id/torch/silver/bravo
+
+/decl/hierarchy/outfit/job/torch/crew/command/XO/marine/charlie
+	l_ear = /obj/item/device/radio/headset/heads/marine_charlie
+	id_type = /obj/item/weapon/card/id/torch/silver/charlie
+
+/decl/hierarchy/outfit/job/torch/crew/command/XO/marine/delta
+	l_ear = /obj/item/device/radio/headset/heads/marine_delta
+	id_type = /obj/item/weapon/card/id/torch/silver/delta
+
+
 /decl/hierarchy/outfit/job/torch/passenger/research/rd
 	name = OUTFIT_JOB_NAME("Research Director - Torch")
 	l_ear = /obj/item/device/radio/headset/heads/torchntcommand
@@ -270,6 +288,24 @@ Keeping them simple for now, just spawning with basic EC uniforms, and pretty mu
 	head = /obj/item/clothing/head/utility/marine
 	shoes = /obj/item/clothing/shoes/jungleboots
 
+
+/decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/alpha
+	l_ear = /obj/item/device/radio/headset/marine_alpha
+	id_type = /obj/item/weapon/card/id/torch/crew/engineering/alpha
+
+/decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/bravo
+	l_ear = /obj/item/device/radio/headset/marine_bravo
+	id_type = /obj/item/weapon/card/id/torch/crew/engineering/bravo
+
+/decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/charlie
+	l_ear = /obj/item/device/radio/headset/marine_charlie
+	id_type = /obj/item/weapon/card/id/torch/crew/engineering/charlie
+
+/decl/hierarchy/outfit/job/torch/crew/engineering/engineer/marine/delta
+	l_ear = /obj/item/device/radio/headset/marine_delta
+	id_type = /obj/item/weapon/card/id/torch/crew/engineering/delta
+
+
 /decl/hierarchy/outfit/job/torch/crew/engineering/contractor
 	name = OUTFIT_JOB_NAME("Engineering Assistant")
 	uniform = /obj/item/clothing/under/rank/engineer
@@ -356,6 +392,24 @@ Keeping them simple for now, just spawning with basic EC uniforms, and pretty mu
 	head = /obj/item/clothing/head/utility/marine
 	shoes = /obj/item/clothing/shoes/jungleboots
 
+
+/decl/hierarchy/outfit/job/torch/crew/security/maa/marine/alpha
+	l_ear = /obj/item/device/radio/headset/marine_alpha
+	id_type = /obj/item/weapon/card/id/torch/crew/security/alpha
+
+/decl/hierarchy/outfit/job/torch/crew/security/maa/marine/bravo
+	l_ear = /obj/item/device/radio/headset/marine_bravo
+	id_type = /obj/item/weapon/card/id/torch/crew/security/bravo
+
+/decl/hierarchy/outfit/job/torch/crew/security/maa/marine/charlie
+	l_ear = /obj/item/device/radio/headset/marine_charlie
+	id_type = /obj/item/weapon/card/id/torch/crew/security/charlie
+
+/decl/hierarchy/outfit/job/torch/crew/security/maa/marine/delta
+	l_ear = /obj/item/device/radio/headset/marine_delta
+	id_type = /obj/item/weapon/card/id/torch/crew/security/delta
+
+
 //Medical Outfits
 
 /decl/hierarchy/outfit/job/torch/crew/medical
@@ -398,6 +452,24 @@ Keeping them simple for now, just spawning with basic EC uniforms, and pretty mu
 	uniform = /obj/item/clothing/under/utility/marine/medical/banded
 	head = /obj/item/clothing/head/utility/marine
 	shoes = /obj/item/clothing/shoes/jungleboots
+
+
+/decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/alpha
+	l_ear = /obj/item/device/radio/headset/marine_alpha
+	id_type = /obj/item/weapon/card/id/torch/crew/medical/alpha
+
+/decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/bravo
+	l_ear = /obj/item/device/radio/headset/marine_bravo
+	id_type = /obj/item/weapon/card/id/torch/crew/medical/bravo
+
+/decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/charlie
+	l_ear = /obj/item/device/radio/headset/marine_charlie
+	id_type = /obj/item/weapon/card/id/torch/crew/medical/charlie
+
+/decl/hierarchy/outfit/job/torch/crew/medical/doctor/medic/delta
+	l_ear = /obj/item/device/radio/headset/marine_delta
+	id_type = /obj/item/weapon/card/id/torch/crew/medical/delta
+
 
 /decl/hierarchy/outfit/job/torch/crew/medical/contractor
 	name = OUTFIT_JOB_NAME("Medical Contractor")

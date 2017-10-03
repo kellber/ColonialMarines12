@@ -74,21 +74,21 @@
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/marine_alpha
 
-/obj/item/device/radio/headset/heads/marine_bravo_leader
+/obj/item/device/radio/headset/heads/marine_bravo
 	name = "marine bravo leader's headset"
 	desc = "This is used by the marine bravo squad leader."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/marine_bravo
 
-/obj/item/device/radio/headset/heads/marine_charlie_leader
+/obj/item/device/radio/headset/heads/marine_charlie
 	name = "marine charlie leader's headset"
 	desc = "This is used by the marine charlie squad leader."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	ks2type = /obj/item/device/encryptionkey/heads/marine_charlie
 
-/obj/item/device/radio/headset/heads/marine_delta_leader
+/obj/item/device/radio/headset/heads/marine_delta
 	name = "marine delta leader's headset"
 	desc = "This is used by the marine delta squad leader."
 	icon_state = "cargo_headset"

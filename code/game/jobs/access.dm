@@ -156,6 +156,14 @@
 			return "General"
 		if(ACCESS_REGION_SUPPLY) //supply
 			return "Supply"
+		if(ACCESS_REGION_ALPHA) // alpha squad
+			return "Alpha"
+		if(ACCESS_REGION_BRAVO) // bravo squad
+			return "Bravo"
+		if(ACCESS_REGION_CHARLIE) // charlie squad
+			return "Charlie"
+		if(ACCESS_REGION_DELTA) // delta squad
+			return "Delta"
 
 /proc/get_access_desc(id)
 	var/list/AS = priv_all_access_datums_id || get_all_access_datums_by_id()
