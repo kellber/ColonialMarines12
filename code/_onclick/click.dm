@@ -17,8 +17,8 @@
 */
 
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	var/datum/click_handler/click_handler = usr.GetClickHandler()
-	click_handler.OnClick(src, params)
+	//var/datum/click_handler/click_handler = usr.GetClickHandler()
+	//click_handler.OnClick(src, params)
 
 /atom/DblClick(var/location, var/control, var/params)
 	var/datum/click_handler/click_handler = usr.GetClickHandler()
@@ -355,12 +355,37 @@
 
 /mob
 	var/datum/stack/click_handlers
+	var/mouse_down_left = FALSE
+	var/atom/mouse_target
 
 /mob/Destroy()
 	if(click_handlers)
 		click_handlers.QdelClear()
 		QDEL_NULL(click_handlers)
 	. = ..()
+
+/atom/MouseDown(location, control, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["left"])
+		usr.mouse_down_left = TRUE
+	usr.mouse_target = location
+	var/datum/click_handler/click_handler = usr.GetClickHandler()
+	click_handler.OnClick(src, params)
+
+/atom/MouseUp(location, control, params)
+	var/list/modifiers = params2list(params)
+	if(modifiers["left"])
+		usr.mouse_down_left = FALSE
+	usr.mouse_target = null
+
+/atom/MouseDrag(atom/A)
+	if(usr.mouse_down_left && isatom(A))
+		usr.mouse_target = A
+		if(isliving(A))
+			var/mob/living/L = A
+			if(!L.lying)
+				usr.mouse_target = get_turf(A)
+
 
 var/const/CLICK_HANDLER_NONE                 = 0
 var/const/CLICK_HANDLER_REMOVE_ON_MOB_LOGOUT = 1

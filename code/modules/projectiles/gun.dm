@@ -179,36 +179,64 @@
 			to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 		return
 
-	var/shoot_time = (burst - 1)* burst_delay
-	user.setClickCooldown(shoot_time) //no clicking on things while shooting
-	user.setMoveCooldown(shoot_time) //no moving while shooting either
-	next_fire_time = world.time + shoot_time
-
 	var/held_twohanded = (user.can_wield_item(src) && src.is_held_twohanded(user))
 
 	//actually attempt to shoot
 	var/turf/targloc = get_turf(target) //cache this in case target gets deleted during shooting, e.g. if it was a securitron that got destroyed.
-	for(var/i in 1 to burst)
-		var/obj/projectile = consume_next_projectile(user)
-		if(!projectile)
-			handle_click_empty(user)
-			break
 
-		process_accuracy(projectile, user, target, i, held_twohanded)
+	if(burst == -1 && user.mouse_down_left)
+		user.setClickCooldown(20)
+		next_fire_time = world.time + 20
 
-		if(pointblank)
-			process_point_blank(projectile, user, target)
+		var/dynamic_accuracy = 0
+		while(user.mouse_down_left)
+			var/obj/projectile = consume_next_projectile(user)
+			if(!projectile)
+				handle_click_empty(user)
+				break
 
-		if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
-			handle_post_fire(user, target, pointblank, reflex)
-			update_icon()
+			dynamic_accuracy += rand(0.03,0.15)
+			process_accuracy(projectile, user, user.mouse_target, dynamic_accuracy, held_twohanded)
 
-		if(i < burst)
+			if(pointblank)
+				process_point_blank(projectile, user, user.mouse_target)
+
+			if(process_projectile(projectile, user, user.mouse_target, user.zone_sel.selecting, clickparams))
+				handle_post_fire(user, user.mouse_target, pointblank, reflex)
+				update_icon()
+
 			sleep(burst_delay)
 
-		if(!(target && target.loc))
-			target = targloc
-			pointblank = 0
+			if(!(user.mouse_target && user.mouse_target.loc))
+				user.mouse_target = targloc
+				pointblank = 0
+	else
+		var/shoot_time = (burst - 1)* burst_delay
+		user.setClickCooldown(shoot_time) //no clicking on things while shooting
+		user.setMoveCooldown(shoot_time) //no moving while shooting either
+		next_fire_time = world.time + shoot_time
+
+		for(var/i in 1 to burst)
+			var/obj/projectile = consume_next_projectile(user)
+			if(!projectile)
+				handle_click_empty(user)
+				break
+
+			process_accuracy(projectile, user, target, i, held_twohanded)
+
+			if(pointblank)
+				process_point_blank(projectile, user, target)
+
+			if(process_projectile(projectile, user, target, user.zone_sel.selecting, clickparams))
+				handle_post_fire(user, target, pointblank, reflex)
+				update_icon()
+
+			if(i < burst)
+				sleep(burst_delay)
+
+			if(!(target && target.loc))
+				target = targloc
+				pointblank = 0
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
@@ -302,8 +330,15 @@
 	if(!istype(P))
 		return //default behaviour only applies to true projectiles
 
-	var/acc_mod = burst_accuracy[min(burst, burst_accuracy.len)]
-	var/disp_mod = dispersion[min(burst, dispersion.len)]
+	var/acc_mod
+	var/disp_mod
+
+	if(src.burst == -1)
+		acc_mod = -1//min(burst, 3)
+		disp_mod = min(burst, 3)
+	else
+		acc_mod = burst_accuracy[min(burst, burst_accuracy.len)]
+		disp_mod = dispersion[min(burst, dispersion.len)]
 
 	if(one_hand_penalty)
 		if(!held_twohanded)
