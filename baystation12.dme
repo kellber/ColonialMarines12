@@ -2435,6 +2435,7 @@
 #include "code\modules\ZZmarines\modules\clothing\head\helmet.dm"
 #include "code\modules\ZZmarines\modules\clothing\suits\armor.dm"
 #include "code\modules\ZZmarines\modules\projectiles\guns\projectile\automatic.dm"
+#include "code\modules\ZZmarines\modules\projectiles\guns\projectile\pistol.dm"
 #include "code\procs\announce.dm"
 #include "code\procs\AStar.dm"
 #include "code\procs\dbcore.dm"
