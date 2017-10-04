@@ -156,6 +156,9 @@
 			src.update_icon()
 
 	if(istype(W, /obj/item/device/mmi))
+		to_chat(user, "<span class='warning'>this feature is disabled.</span>")
+		return
+
 		var/obj/item/device/mmi/M = W
 		if(check_completion())
 			if(!istype(loc,/turf))
