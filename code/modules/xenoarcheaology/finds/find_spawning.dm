@@ -377,6 +377,7 @@
 	var/new_type = pick(possible_spawns)
 	return new new_type(loc)
 
+/*
 /obj/item/weapon/archaeological_find/laser
 	item_type = "gun"
 	icon_state = "egun1"
@@ -408,6 +409,7 @@
 
 	return new_gun
 
+*/
 /obj/item/weapon/archaeological_find/gun
 	item_type = "gun"
 	icon_state = "gun1"

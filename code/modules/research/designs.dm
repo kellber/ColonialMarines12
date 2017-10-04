@@ -508,7 +508,7 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 4000)
 	build_path = /obj/item/weapon/gun/energy/stunrevolver
 	sort_string = "TAAAA"
-
+/*
 /datum/design/item/weapon/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
@@ -537,7 +537,7 @@ other types of metals and chemistry for reagents).
 	materials = list("gold" = 5000,"uranium" = 10000, "mutagen" = 40)
 	build_path = /obj/item/weapon/gun/energy/decloner
 	sort_string = "TAAAE"
-
+*/
 /datum/design/item/weapon/smg
 	id = "smg"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
@@ -606,7 +606,7 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 1000)
 	build_path = /obj/item/weapon/gun/launcher/syringe/rapid
 	sort_string = "TABAB"
-
+/*
 /datum/design/item/weapon/temp_gun
 	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
 	id = "temp_gun"
@@ -614,21 +614,21 @@ other types of metals and chemistry for reagents).
 	materials = list(DEFAULT_WALL_MATERIAL = 5000, "glass" = 500, "silver" = 3000)
 	build_path = /obj/item/weapon/gun/energy/temperature
 	sort_string = "TABAC"
-
+*/
 /datum/design/item/weapon/large_grenade
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	materials = list(DEFAULT_WALL_MATERIAL = 3000)
 	build_path = /obj/item/weapon/grenade/chem_grenade/large
 	sort_string = "TACAA"
-
+/*
 /datum/design/item/weapon/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
 	materials = list(DEFAULT_WALL_MATERIAL = 2000, "glass" = 500, "uranium" = 500)
 	build_path = /obj/item/weapon/gun/energy/floragun
 	sort_string = "TBAAA"
-
+*/
 /datum/design/item/stock_part/subspace_ansible
 	id = "s-ansible"
 	req_tech = list(TECH_DATA = 3, TECH_MAGNET = 4, TECH_MATERIAL = 4, TECH_BLUESPACE = 2)

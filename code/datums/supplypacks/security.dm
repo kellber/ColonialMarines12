@@ -126,7 +126,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Weapons crate"
 	access = access_security
-
+/*
 /decl/hierarchy/supply_pack/security/egun
 	name = "Weapons - Energy sidearms"
 	contains = list(/obj/item/weapon/gun/energy/gun = 4)
@@ -143,7 +143,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "\improper Electromagnetic weapons crate"
 	access = access_armory
-
+*/
 /decl/hierarchy/supply_pack/security/pistol
 	name = "Weapons - Ballistic sidearms"
 	contains = list(/obj/item/weapon/gun/projectile/sec = 4)

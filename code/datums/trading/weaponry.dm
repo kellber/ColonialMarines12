@@ -37,7 +37,7 @@
 								/obj/item/ammo_magazine/mc9mmt/empty        = TRADER_BLACKLIST,
 								/obj/item/ammo_magazine/a50/empty           = TRADER_BLACKLIST,
 								/obj/item/clothing/accessory/holster        = TRADER_ALL)
-
+/*
 /datum/trader/ship/egunshop
 	name = "Energy Gun Shop Employee"
 	name_language = TRADER_DEFAULT_NAME
@@ -69,7 +69,7 @@
 								/obj/item/weapon/cell/super                              = TRADER_THIS_TYPE,
 								/obj/item/weapon/cell/hyper                              = TRADER_THIS_TYPE,
 								/obj/item/clothing/accessory/holster                     = TRADER_ALL)
-
+*/
 /datum/trader/dogan
 	name = "Dogan"
 	origin = "Dogan's Gun Beacon"
@@ -94,6 +94,6 @@
 								/obj/item/weapon/gun/projectile/sec/MK                  = TRADER_THIS_TYPE,
 								/obj/item/weapon/gun/projectile/silenced/cheap          = TRADER_THIS_TYPE,
 								/obj/item/weapon/gun/projectile/heavysniper/ant         = TRADER_THIS_TYPE,
-								/obj/item/weapon/gun/energy/laser/dogan                 = TRADER_THIS_TYPE,
+								//obj/item/weapon/gun/energy/laser/dogan                 = TRADER_THIS_TYPE,
 								/obj/item/weapon/gun/projectile/automatic/mini_uzi/usi  = TRADER_THIS_TYPE,
 								/obj/item/clothing/accessory/holster                    = TRADER_ALL)
