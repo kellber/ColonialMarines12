@@ -119,6 +119,14 @@
 	set desc = "Plants some alien weeds"
 	set category = "Abilities"
 
+	if(!isturf(loc))
+		to_chat(src, "<span class='alium'><span class='noticealien'>Bad place for a garden!</span>")
+		return
+
+	if(locate(/obj/structure/alien/node) in get_turf(src))
+		to_chat(src, "<span class='alium'>There's already a weed node here.</span>")
+		return
+
 	if(check_alien_ability(50,1,BP_RESIN))
 		visible_message("<span class='alium'><B>[src] has planted some alien weeds!</B></span>")
 		new /obj/structure/alien/node(loc)
