@@ -676,10 +676,17 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/mob_icon
 	if(icon_override)
 		mob_icon = icon_override
-		if(slot == 	slot_l_hand_str || slot == slot_l_ear_str)
-			mob_state = "[mob_state]_l"
-		if(slot == 	slot_r_hand_str || slot == slot_r_ear_str)
-			mob_state = "[mob_state]_r"
+
+		switch(slot)
+			if(slot_l_hand_str , slot_l_ear_str)
+				mob_state = "[mob_state]_l"
+			if(slot_r_hand_str , slot_r_ear_str)
+				mob_state = "[mob_state]_r"
+			if(slot_back_str)
+				mob_state = "[mob_state]_back"
+			if(slot_belt_str)
+				mob_state = "[mob_state]_belt"
+
 	else if(use_spritesheet(bodytype, slot, mob_state))
 		if(slot == slot_l_ear)
 			mob_state = "[mob_state]_l"

@@ -10,7 +10,7 @@
 	caliber = "10mm"
 	handle_casings = CLEAR_CASINGS
 	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
-	slot_flags = SLOT_BACK
+	slot_flags = SLOT_BACK | SLOT_BELT
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m41
 	allowed_magazines = /obj/item/ammo_magazine/m41
