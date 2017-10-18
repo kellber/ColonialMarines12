@@ -17,8 +17,10 @@
 */
 
 /atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	//var/datum/click_handler/click_handler = usr.GetClickHandler()
-	//click_handler.OnClick(src, params)
+	if(isturf(src) || isturf(loc)) // redirect to MouseDown.
+		return
+	var/datum/click_handler/click_handler = usr.GetClickHandler()
+	click_handler.OnClick(src, params)
 
 /atom/DblClick(var/location, var/control, var/params)
 	var/datum/click_handler/click_handler = usr.GetClickHandler()
@@ -350,13 +352,13 @@
 	. = 1
 
 /*
-	Custom click handling
+	Custom click handling (used in fullauto shooting)
 */
 
 /mob
 	var/datum/stack/click_handlers
 	var/mouse_down_left = FALSE
-	var/atom/mouse_target
+	var/tmp/weakref/mouse_target
 
 /mob/Destroy()
 	if(click_handlers)
@@ -365,10 +367,13 @@
 	. = ..()
 
 /atom/MouseDown(location, control, params)
+	if(!isturf(src) && !isturf(loc)) // redirect to normal click (we are only interested in objects on turfs or turfs).
+		return
+
 	var/list/modifiers = params2list(params)
 	if(modifiers["left"])
 		usr.mouse_down_left = TRUE
-	usr.mouse_target = location
+	usr.mouse_target = weakref(src)
 	var/datum/click_handler/click_handler = usr.GetClickHandler()
 	click_handler.OnClick(src, params)
 
@@ -378,13 +383,16 @@
 		usr.mouse_down_left = FALSE
 	usr.mouse_target = null
 
-/atom/MouseDrag(atom/A)
-	if(usr.mouse_down_left && isatom(A))
-		usr.mouse_target = A
-		if(isliving(A))
-			var/mob/living/L = A
+/atom/MouseDrag(atom/over_object)
+	if(usr.mouse_down_left)
+		if(!isturf(over_object) && !isturf(over_object.loc)) // don't change target to things like hud elements.
+			return
+		usr.mouse_target = weakref(over_object)
+		var/atom/target = usr.mouse_target.resolve()
+		if(isliving(target))
+			var/mob/living/L = target
 			if(!L.lying)
-				usr.mouse_target = get_turf(A)
+				usr.mouse_target = weakref(get_turf(L))
 
 
 var/const/CLICK_HANDLER_NONE                 = 0

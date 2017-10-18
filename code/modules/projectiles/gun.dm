@@ -195,25 +195,25 @@
 				handle_click_empty(user)
 				break
 
+			var/atom/shooting_target = user.mouse_target ? user.mouse_target.resolve() : null
 			dynamic_accuracy += rand(0.03,0.15)
-			process_accuracy(projectile, user, user.mouse_target, dynamic_accuracy, held_twohanded)
+			process_accuracy(projectile, user, shooting_target, dynamic_accuracy, held_twohanded)
 
 			if(pointblank)
-				process_point_blank(projectile, user, user.mouse_target)
+				process_point_blank(projectile, user, shooting_target)
 
-			if(process_projectile(projectile, user, user.mouse_target, user.zone_sel.selecting, clickparams))
-				handle_post_fire(user, user.mouse_target, pointblank, reflex)
+			if(process_projectile(projectile, user, shooting_target, user.zone_sel.selecting, clickparams))
+				handle_post_fire(user, shooting_target, pointblank, reflex)
 				update_icon()
 
 			sleep(burst_delay)
 
-			if(!(user.mouse_target && user.mouse_target.loc))
-				user.mouse_target = targloc
+			if(!(shooting_target && shooting_target.loc))
+				user.mouse_target = weakref(targloc)
 				pointblank = 0
 	else
 		var/shoot_time = (burst - 1)* burst_delay
 		user.setClickCooldown(shoot_time) //no clicking on things while shooting
-		user.setMoveCooldown(shoot_time) //no moving while shooting either
 		next_fire_time = world.time + shoot_time
 
 		for(var/i in 1 to burst)
@@ -240,7 +240,6 @@
 
 	//update timing
 	user.setClickCooldown(DEFAULT_QUICK_COOLDOWN)
-	user.setMoveCooldown(move_delay)
 	next_fire_time = world.time + fire_delay
 
 //obtains the next projectile to fire
