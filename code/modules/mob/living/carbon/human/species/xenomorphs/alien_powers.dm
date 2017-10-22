@@ -278,3 +278,26 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 	A.stat |= BROKEN
 	var/check = A.open(1)
 	src.visible_message("\The [src] slices \the [A]'s controls[check ? ", ripping it open!" : ", breaking it!"]")
+
+/mob/living/carbon/proc/alien_nightvision()
+
+	set name = "Toggle Night Vision"
+	set desc = "See better in the dark, but worse in the light."
+	set category = "Abilities"
+
+	if(!client)
+		return
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(!H.check_alien_ability(0,0,BP_HIVE))
+			return
+
+	nvg_vis = !nvg_vis
+
+	if(nvg_vis)
+		client.color = COLOR_ALIEN_VISION
+	else
+		client.color = null
+
+	to_chat(src, "<span class='alium'>You adapt your eyes for [nvg_vis ? "dark" : "light"] !</span>")

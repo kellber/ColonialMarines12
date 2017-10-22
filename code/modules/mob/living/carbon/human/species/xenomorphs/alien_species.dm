@@ -28,6 +28,7 @@
 	flags = NO_SCAN | NO_PAIN | NO_SLIP | NO_POISON | NO_EMBED
 	appearance_flags = HAS_SKIN_COLOR
 
+	darksight = 8
 	spawn_flags = SPECIES_IS_RESTRICTED
 
 	reagent_tag = IS_XENOS
@@ -85,6 +86,10 @@
 /datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
 	..(H)
 
+/datum/species/xenos/handle_login_special(mob/living/carbon/human/H)
+	..()
+	if(H.nvg_vis)
+		H.client.color = COLOR_ALIEN_VISION
 
 /datum/species/xenos/get_bodytype(var/mob/living/carbon/H)
 	return "Xenomorph"
@@ -192,7 +197,8 @@
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/evolve,
 		/mob/living/carbon/human/proc/resin,
-		/mob/living/carbon/human/proc/corrosive_acid
+		/mob/living/carbon/human/proc/corrosive_acid,
+		/mob/living/carbon/proc/alien_nightvision
 		)
 
 /datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
@@ -229,7 +235,8 @@
 		/mob/living/carbon/human/proc/tackle,
 		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/psychic_whisper,
-		/mob/living/carbon/human/proc/regurgitate
+		/mob/living/carbon/human/proc/regurgitate,
+		/mob/living/carbon/proc/alien_nightvision
 		)
 
 /datum/species/xenos/sentinel
@@ -258,7 +265,8 @@
 		/mob/living/carbon/human/proc/regurgitate,
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/human/proc/neurotoxin
+		/mob/living/carbon/human/proc/neurotoxin,
+		/mob/living/carbon/proc/alien_nightvision
 		)
 
 /datum/species/xenos/queen
@@ -295,7 +303,8 @@
 		/mob/living/carbon/human/proc/corrosive_acid,
 		/mob/living/carbon/human/proc/neurotoxin,
 		/mob/living/carbon/human/proc/resin,
-		/mob/living/carbon/human/proc/xeno_infest
+		/mob/living/carbon/human/proc/xeno_infest,
+		/mob/living/carbon/proc/alien_nightvision
 		)
 
 	genders = list(FEMALE)

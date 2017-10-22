@@ -51,3 +51,5 @@
 #define	PIPE_COLOR_ORANGE      "#b95a00"
 
 #define COLOR_BLOOD_HUMAN "#a10808"
+
+#define COLOR_ALIEN_VISION list(0.5,-1.4,-1.4,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0.8,0.9,0)

@@ -13,3 +13,9 @@
 	add_language("Xenomorph") //Bonus language.
 	internal_organs |= new /obj/item/organ/internal/xenos/hivenode(src)
 	create_reagents(100)
+	verbs += /mob/living/carbon/proc/alien_nightvision
+
+/mob/living/carbon/alien/larva/Login()
+	. = ..()
+	if(nvg_vis)
+		client.color = COLOR_ALIEN_VISION
