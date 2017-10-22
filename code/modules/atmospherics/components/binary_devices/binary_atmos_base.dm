@@ -117,10 +117,8 @@ obj/machinery/atmospherics/binary
 		update_underlays()
 
 		return null
-		
-obj/machinery/atmospherics/binary/Destroy()
-	loc = null
 
+obj/machinery/atmospherics/binary/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		qdel(network1)
