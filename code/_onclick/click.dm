@@ -16,9 +16,12 @@
 	Note that this proc can be overridden, and is in the case of screen objects.
 */
 
-/atom/Click(var/location, var/control, var/params) // This is their reaction to being clicked on (standard proc)
-	if(isturf(src) || isturf(loc)) // redirect to MouseDown.
+/atom/Click(location, control, params) // This is their reaction to being clicked on (standard proc)
+	var/list/modifiers = params2list(params)
+
+	if((isturf(src) || isturf(loc)) && !modifiers["shift"]) // redirect to MouseDown.
 		return
+
 	var/datum/click_handler/click_handler = usr.GetClickHandler()
 	click_handler.OnClick(src, params)
 
@@ -367,10 +370,11 @@
 	. = ..()
 
 /atom/MouseDown(location, control, params)
-	if(!isturf(src) && !isturf(loc)) // redirect to normal click (we are only interested in objects on turfs or turfs).
+	var/list/modifiers = params2list(params)
+
+	if((!isturf(src) && !isturf(loc)) || modifiers["shift"]) // redirect to normal click (we are only interested in objects on turfs or turfs).
 		return
 
-	var/list/modifiers = params2list(params)
 	if(modifiers["left"])
 		usr.mouse_down_left = TRUE
 	usr.mouse_target = weakref(src)
