@@ -84,6 +84,9 @@
 	if(victim.buckled || victim.anchored)
 		return
 
+	if(istype(seed, /datum/seed/xenomorph))
+		return
+
 	//grabbing people
 	if(!victim.anchored && (Adjacent(victim) || victim.loc == src.loc))
 		var/can_grab = 1
