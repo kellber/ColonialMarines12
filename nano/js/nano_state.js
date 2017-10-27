@@ -110,6 +110,42 @@ NanoStateClass.prototype.onAfterUpdate = function (data) {
     NanoStateManager.executeAfterUpdateCallbacks(data);
 };
 
+NanoStateClass.prototype.FixCyrillicInLayout = function () {
+    // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
+
+    if(this.layoutRendered) {
+        // This function will fix cyrillic display after byond's json_encode procedure.
+        function CaesarCipher(str) {
+            var result = '';
+            var charcode = 0;
+            var cyrillic_offset = 848;
+
+            for (var i = 0; i < str.length; i++) {
+
+                var initial_charcode = str[i].charCodeAt();
+
+                // This charCode represents russian "ja" letter after sanitize() proc.
+                if(initial_charcode == 182) {
+                    initial_charcode = 255;
+                }
+
+                // We want to be sure, that we only shift cyrillic-range CharCodes.
+                if (initial_charcode >= 192 && initial_charcode <= 255) {
+                    charcode = (initial_charcode) + cyrillic_offset;
+
+                    result += String.fromCharCode(charcode);
+                } else {
+                    result += String.fromCharCode(initial_charcode);
+                }
+            }
+            return result;
+        }
+
+        var str = document.getElementById("uiLayout").innerHTML;
+        document.getElementById("uiLayout").innerHTML = CaesarCipher(str);
+     }
+};
+
 NanoStateClass.prototype.alertText = function (text) {
     // Do not add code here, add it to the 'default' state (nano_state_defaut.js) or create a new state and override this function
 

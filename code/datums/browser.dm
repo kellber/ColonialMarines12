@@ -60,6 +60,15 @@
 /datum/browser/proc/add_content(ncontent)
 	content += ncontent
 
+/datum/browser/proc/after_sanitize_fix_ja()
+	return {"
+	<script>
+	var str = document.getElementsByClassName("uiWrapper")\[0\].innerHTML;
+	var res = str.replace(/[JA_TEMP]/g, "[JA_POPUP]");
+	document.getElementsByClassName("uiWrapper")\[0\].innerHTML = res;
+	</script>
+	"}
+
 /datum/browser/proc/get_header()
 	var/key
 	var/filename
@@ -79,7 +88,7 @@
 
 	return {"<!DOCTYPE html>
 <html>
-	<meta charset=ISO-8859-1">
+	<meta charset="windows-1251">
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		[head_content]
@@ -94,6 +103,7 @@
 	return {"
 			</div>
 		</div>
+		[after_sanitize_fix_ja()]
 	</body>
 </html>"}
 

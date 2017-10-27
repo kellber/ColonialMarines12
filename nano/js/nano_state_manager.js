@@ -105,6 +105,8 @@ NanoStateManager = function ()
 
         _currentState.onUpdate(_data);
 
+        _currentState.FixCyrillicInLayout(); // this will fix any issues with cyrillic display after json_encode().
+
         _currentState.onAfterUpdate(_data);
 	};
 	

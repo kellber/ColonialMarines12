@@ -22,9 +22,21 @@
  * Text sanitization
  */
 
+// Cyrillic support
+#define JA         "ÿ"
+#define JA_TEMP    "¶"
+#define JA_CHAT    "&#255;"
+#define JA_POPUP   "&#1103;"
+
+/proc/fix_ja_input(text)
+	return replacetext(text, JA, JA_TEMP)
+
+/proc/fix_ja_output(text)
+	return replacetext(text, JA_TEMP, JA_CHAT)
+
 //Used for preprocessing entered text
 //Added in an additional check to alert players if input is too long
-/proc/sanitize(var/input, var/max_length = MAX_MESSAGE_LEN, var/encode = 1, var/trim = 1, var/extra = 1)
+/proc/sanitize(input, max_length = MAX_MESSAGE_LEN, encode = 1, trim = 1, extra = 1)
 	if(!input)
 		return
 
@@ -35,6 +47,8 @@
 			to_chat(usr, "<span class='warning'>Your message is too long by [overflow] character\s.</span>")
 			return
 		input = copytext(input,1,max_length)
+
+	input = fix_ja_input(input)
 
 	if(extra)
 		input = replace_characters(input, list("\n"=" ","\t"=" "))

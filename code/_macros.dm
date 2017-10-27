@@ -79,7 +79,8 @@
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
-#define to_chat(target, message)                            target << message
+#define to_chat(target, message)                            target << fix_ja_output(message)
+#define direct_output(target, message)                      target << message
 #define to_world(message)                                   world << message
 #define to_world_log(message)                               world.log << message
 #define sound_to(target, sound)                             target << sound
