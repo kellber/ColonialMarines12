@@ -382,8 +382,23 @@ This function restores all organs.
 
 	if(!organ)	return 0
 
-	if(blocked)
-		damage *= blocked_mult(blocked)
+	last_damage_tick = world.time
+
+	if(!is_xenomorph_adult(src))
+		if(blocked)
+			damage *= blocked_mult(blocked)
+	else
+		if(armor > 0)
+			var/calculated_damage = damage * 0.50 // simplified now = 1 armor point absorbs 2 point of damage. TODO: light, normal and heavy damage type.
+			var/excess_damage = FALSE
+
+			if(armor - calculated_damage < 0)
+				excess_damage = TRUE
+
+			armor = max(0, armor - calculated_damage)
+
+			if(!excess_damage)
+				return 1 // if there is enough armor to stop all damage, no point to go below.
 
 	if(damage > 15 && prob(damage*4))
 		make_adrenaline(round(damage/10))

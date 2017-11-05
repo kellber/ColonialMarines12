@@ -249,6 +249,13 @@
 #define SPECIES_PROMETHEAN "Promethean"
 #define SPECIES_BOGANI "Bogani"
 #define SPECIES_EGYNO "Egyno"
+#define SPECIES_XENO "Xenomorph"
+
+// Xenomorph specific ( lowercase !important! )
+#define CASTE_QUEEN "queen"
+#define CASTE_DRONE "drone"
+#define CASTE_SENTINEL "sentinel"
+#define CASTE_HUNTER "hunter"
 
 #define SURGERY_CLOSED 0
 #define SURGERY_OPEN 1

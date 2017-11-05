@@ -114,3 +114,7 @@
 
 	var/obj/item/grab/current_grab_type 	// What type of grab they use when they grab someone.
 	var/skin_state = SKIN_NORMAL
+
+	// Xeno related stats
+	var/armor = 0 //A mob's current armor
+	var/last_damage_tick = 0 // updated when user recieves damage. atm used by xeno to stop health regeneration under continued fire.

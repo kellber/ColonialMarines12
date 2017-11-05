@@ -455,6 +455,13 @@
 				target.visible_message("<span class='danger'>[target]'s [W] goes off during the struggle!</span>")
 				return W.afterattack(shoot_to,target)
 
+	if(disarm_apply_effect(attacker, target, affecting, holding))
+		return
+
+	playsound(target.loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
+	target.visible_message("<span class='danger'>[attacker] attempted to disarm \the [target]!</span>")
+
+/datum/species/proc/disarm_apply_effect(mob/living/carbon/human/attacker, mob/living/carbon/human/target, obj/item/organ/external/affecting, list/holding)
 	var/randn = rand(1, 100)
 	if(!(flags & NO_SLIP) && randn <= 25)
 		var/armor_check = target.run_armor_check(affecting, "melee")
@@ -464,13 +471,13 @@
 			target.visible_message("<span class='danger'>[attacker] has pushed [target]!</span>")
 		else
 			target.visible_message("<span class='warning'>[attacker] attempted to push [target]!</span>")
-		return
+		return TRUE
 
 	if(randn <= 60)
 		//See about breaking grips or pulls
 		if(target.break_all_grabs(attacker))
 			playsound(target.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-			return
+			return TRUE
 
 		//Actually disarm them
 		for(var/obj/item/I in holding)
@@ -478,7 +485,19 @@
 				target.drop_from_inventory(I)
 				target.visible_message("<span class='danger'>[attacker] has disarmed [target]!</span>")
 				playsound(target.loc, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
-				return
+				return TRUE
 
-	playsound(target.loc, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
-	target.visible_message("<span class='danger'>[attacker] attempted to disarm \the [target]!</span>")
+/datum/species/xenos/disarm_apply_effect(mob/living/carbon/human/attacker, mob/living/carbon/human/target, obj/item/organ/external/affecting, list/holding)
+	if(prob(tackle_chance))
+		var/tackle_duration = rand(tackle_min, tackle_max)
+
+		target.apply_effect(tackle_duration, STUN)
+		playsound(target, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		attacker.visible_message("<span class='danger'>[attacker] has tackled [target]!</span>")
+		return TRUE
+
+/datum/species/proc/get_species_unarmed_damage()
+	return 5
+
+/datum/species/xenos/get_species_unarmed_damage()
+	return rand(damage_min, damage_max)

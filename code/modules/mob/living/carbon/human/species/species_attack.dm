@@ -68,6 +68,12 @@
 	damage = 8
 	shredding = 1
 
+/datum/unarmed_attack/claws/strong/get_unarmed_damage(mob/living/carbon/human/user)
+	if(user.species && user.species.get_bodytype(user) == "Xenomorph")
+		return user.species.get_species_unarmed_damage()
+	else
+		return damage
+
 /datum/unarmed_attack/slime_glomp
 	attack_verb = list("glomped")
 	attack_noun = list("body")

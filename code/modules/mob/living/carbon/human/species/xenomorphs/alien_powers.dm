@@ -301,3 +301,17 @@ mob/living/carbon/human/proc/xeno_infest(mob/living/carbon/human/M as mob in ovi
 		client.color = null
 
 	to_chat(src, "<span class='alium'>You adapt your eyes for [nvg_vis ? "dark" : "light"] !</span>")
+
+/mob/living/carbon/proc/evolution_menu()
+	set name = "Evolution Menu"
+	set desc = "Open Evolution Menu."
+	set category = "Abilities"
+
+	if(ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(!H.check_alien_ability(0,0,BP_HIVE))
+			return
+	else if(!islarva(src))
+		return
+
+	evolution_tree.show_tree(src)

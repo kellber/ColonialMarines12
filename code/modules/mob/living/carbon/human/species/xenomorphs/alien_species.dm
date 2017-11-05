@@ -15,7 +15,7 @@
 	gluttonous = GLUT_ANYTHING
 	stomach_capacity = MOB_MEDIUM
 
-	brute_mod = 0.25 // Hardened carapace.
+	brute_mod = 1.0
 	burn_mod = 1.1    // Weak to fire.
 
 	warning_low_pressure = 50
@@ -76,23 +76,61 @@
 	swap_flags = ~HEAVY
 	push_flags = (~HEAVY) ^ ROBOT
 
-	var/alien_number = 0
-	var/caste_name = "creature" // Used to update alien name.
-	var/weeds_heal_rate = 3     // Health regen on weeds.
-	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
-
 	genders = list(NEUTER)
 
-/datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
-	..(H)
+	var/alien_number = 0
+	var/caste_name = "creature" // Used to update alien name.
+	var/weeds_heal_rate = 0     // Health regen on weeds.
+	var/weeds_plasma_rate = 0   // Plasma regen on weeds.
+
+	var/damage_min = 0
+	var/damage_max = 0
+
+	var/tackle_min = 0
+	var/tackle_max = 0
+	var/tackle_chance = 0
+
+	var/total_armor = 0
+
+/datum/species/xenos/handle_post_spawn(mob/living/carbon/human/H)
+	if(H.mind)
+		H.mind.assigned_role = "Alien"
+		H.mind.special_role = "Alien"
+
+	alien_number++ //Keep track of how many aliens we've had so far.
+	H.real_name = "alien [caste_name] ([alien_number])"
+	H.name = H.real_name
+	..()
+	update_stats(H)
 
 /datum/species/xenos/handle_login_special(mob/living/carbon/human/H)
 	..()
 	if(H.nvg_vis)
 		H.client.color = COLOR_ALIEN_VISION
 
+/datum/species/xenos/proc/update_stats(mob/living/carbon/human/H)
+	var/datum/xeno_stats/XS = x_stats.GetCasteStats(caste_name)
+	if(XS)
+		H.maxHealth = XS.max_health["base"]
+		total_health = XS.max_health["base"]
+		total_armor = XS.armor["base"]
+
+		var/obj/item/organ/internal/xenos/plasmavessel/PV = H.internal_organs_by_name[BP_PLASMA]
+		if(PV)
+			PV.max_plasma = XS.max_plasma["base"]
+			weeds_heal_rate = XS.heal_rate["base"]
+			weeds_plasma_rate = XS.plasma_rate["base"]
+		damage_min = XS.damage_min["base"]
+		damage_max = XS.damage_max["base"]
+		tackle_min = XS.tackle_min["base"]
+		tackle_max = XS.tackle_max["base"]
+		tackle_chance = XS.tackle_chance["base"]
+
 /datum/species/xenos/get_bodytype(var/mob/living/carbon/H)
 	return "Xenomorph"
+
+/datum/species/xenos/get_caste()
+	return caste_name
 
 /datum/species/xenos/get_random_name()
 	return "alien [caste_name] ([alien_number])"
@@ -108,18 +146,6 @@
 	H.visible_message("<span class='notice'>[H] caresses [target] with its scythe-like arm.</span>", \
 					"<span class='notice'>You caress [target] with your scythe-like arm.</span>")
 
-/datum/species/xenos/handle_post_spawn(var/mob/living/carbon/human/H)
-
-	if(H.mind)
-		H.mind.assigned_role = "Alien"
-		H.mind.special_role = "Alien"
-
-	alien_number++ //Keep track of how many aliens we've had so far.
-	H.real_name = "alien [caste_name] ([alien_number])"
-	H.name = H.real_name
-
-	..()
-
 /datum/species/xenos/handle_environment_special(var/mob/living/carbon/human/H)
 
 	var/turf/T = H.loc
@@ -134,8 +160,12 @@
 		P.stored_plasma = min(max(P.stored_plasma,0),P.max_plasma)
 	..()
 
-/datum/species/xenos/proc/regenerate(var/mob/living/carbon/human/H)
-	var/heal_rate = weeds_heal_rate
+/datum/species/xenos/proc/regenerate(mob/living/carbon/human/H)
+	if(H.last_damage_tick + x_stats.h_regen_damage_penalty > world.time) // no regeneration when player recently recieved damage.
+		return 0
+
+	var/heal_rate = Clamp(total_health * x_stats.h_regen, 6, 54)
+
 	var/mend_prob = 10
 	if (!H.resting)
 		heal_rate = weeds_heal_rate / 3
@@ -147,6 +177,11 @@
 		H.adjustFireLoss(-heal_rate)
 		H.adjustOxyLoss(-heal_rate)
 		H.adjustToxLoss(-heal_rate)
+		if (prob(5))
+			to_chat(H, "<span class='alium'>You feel a soothing sensation come over you...</span>")
+		return 1
+	else if(H.armor < total_armor)
+		H.armor = Clamp(H.armor + heal_rate, 0, total_armor)
 		if (prob(5))
 			to_chat(H, "<span class='alium'>You feel a soothing sensation come over you...</span>")
 		return 1
@@ -171,7 +206,7 @@
 
 /datum/species/xenos/drone
 	name = "Xenomorph Drone"
-	caste_name = "drone"
+	caste_name = CASTE_DRONE
 	weeds_plasma_rate = 15
 	tail = "xenos_drone_tail"
 	slowdown = 1
@@ -198,7 +233,8 @@
 		/mob/living/carbon/human/proc/evolve,
 		/mob/living/carbon/human/proc/resin,
 		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/proc/alien_nightvision
+		/mob/living/carbon/proc/alien_nightvision,
+		/mob/living/carbon/proc/evolution_menu
 		)
 
 /datum/species/xenos/drone/handle_post_spawn(var/mob/living/carbon/human/H)
@@ -212,7 +248,7 @@
 
 	name = "Xenomorph Hunter"
 	weeds_plasma_rate = 5
-	caste_name = "hunter"
+	caste_name = CASTE_HUNTER
 	slowdown = -2
 	total_health = 300
 	tail = "xenos_hunter_tail"
@@ -236,13 +272,14 @@
 		/mob/living/carbon/human/proc/leap,
 		/mob/living/carbon/human/proc/psychic_whisper,
 		/mob/living/carbon/human/proc/regurgitate,
-		/mob/living/carbon/proc/alien_nightvision
+		/mob/living/carbon/proc/alien_nightvision,
+		/mob/living/carbon/proc/evolution_menu
 		)
 
 /datum/species/xenos/sentinel
 	name = "Xenomorph Sentinel"
 	weeds_plasma_rate = 10
-	caste_name = "sentinel"
+	caste_name = CASTE_SENTINEL
 	slowdown = 0
 	base_color = "#00284d"
 	total_health = 250
@@ -266,7 +303,8 @@
 		/mob/living/carbon/human/proc/transfer_plasma,
 		/mob/living/carbon/human/proc/corrosive_acid,
 		/mob/living/carbon/human/proc/neurotoxin,
-		/mob/living/carbon/proc/alien_nightvision
+		/mob/living/carbon/proc/alien_nightvision,
+		/mob/living/carbon/proc/evolution_menu
 		)
 
 /datum/species/xenos/queen
@@ -275,7 +313,7 @@
 	total_health = 500
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20
-	caste_name = "queen"
+	caste_name = CASTE_QUEEN
 	slowdown = 4
 	tail = "xenos_queen_tail"
 	rarity_value = 10
@@ -304,7 +342,8 @@
 		/mob/living/carbon/human/proc/neurotoxin,
 		/mob/living/carbon/human/proc/resin,
 		/mob/living/carbon/human/proc/xeno_infest,
-		/mob/living/carbon/proc/alien_nightvision
+		/mob/living/carbon/proc/alien_nightvision,
+		/mob/living/carbon/proc/evolution_menu
 		)
 
 	genders = list(FEMALE)

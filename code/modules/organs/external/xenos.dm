@@ -29,6 +29,8 @@
 	organ_tag = BP_PLASMA
 	var/stored_plasma = 0
 	var/max_plasma = 500
+	var/weeds_heal_rate = 3     // Health regen on weeds.
+	var/weeds_plasma_rate = 5   // Plasma regen on weeds.
 
 /obj/item/organ/internal/xenos/plasmavessel/queen
 	name = "bloated plasma vessel"
