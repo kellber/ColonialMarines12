@@ -31,9 +31,6 @@ var/datum/antagonist/xenos/xenomorphs
 	if(!no_reference)
 		xenomorphs = src
 
-/datum/antagonist/xenos/attempt_random_spawn()
-	if(config.aliens_allowed) ..()
-
 /datum/antagonist/xenos/proc/get_vents()
 	var/list/vents = list()
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in SSmachines.machinery)

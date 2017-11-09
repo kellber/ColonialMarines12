@@ -83,11 +83,6 @@
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Abilities"
 
-	if(!config.alien_eggs_allowed)
-		to_chat(src, "You begin to lay an egg, but hesitate. You suspect it isn't allowed.")
-		verbs -= /mob/living/carbon/human/proc/lay_egg
-		return
-
 	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		to_chat(src, "There's already an egg here.")
 		return
@@ -95,8 +90,6 @@
 	if(check_alien_ability(75,1,BP_EGG))
 		visible_message("<span class='alium'><B>[src] has laid an egg!</B></span>")
 		new /obj/structure/alien/egg(loc)
-
-	return
 
 // Drone verbs.
 /mob/living/carbon/human/proc/evolve()
