@@ -23,6 +23,47 @@
 		return affected.open() == (affected.encased ? SURGERY_ENCASED : SURGERY_RETRACTED)
 
 //////////////////////////////////////////////////////////////////
+//					ALIEN EMBRYO SURGERY						//
+//////////////////////////////////////////////////////////////////
+/datum/surgery_step/internal/remove_embryo
+	allowed_tools = list(
+	/obj/item/weapon/hemostat = 100,	\
+	/obj/item/weapon/wirecutters = 75,	\
+	/obj/item/weapon/material/kitchen/utensil/fork = 20
+	)
+	blood_level = 2
+
+	min_duration = 80
+	max_duration = 100
+
+/datum/surgery_step/internal/remove_embryo/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/embryo = 0
+	for(var/obj/item/alien_embryo/A in target)
+		embryo = 1
+		break
+
+	if (!hasorgans(target))
+		return FALSE
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	return ..() && affected && embryo && affected.open() == SURGERY_ENCASED && target_zone == BP_CHEST
+
+/datum/surgery_step/internal/remove_embryo/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/msg = "[user] starts to pull something out from [target]'s ribcage with \the [tool]."
+	var/self_msg = "You start to pull something out from [target]'s ribcage with \the [tool]."
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	user.visible_message(msg, self_msg)
+	target.custom_pain("Something hurts horribly in your chest!", 100, affecting = affected)
+	..()
+
+/datum/surgery_step/internal/remove_embryo/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	user.visible_message("<span class='warning'>[user] rips the larva out of [target]'s ribcage!</span>",
+						 "<span class='warning'>You rip the larva out of [target]'s ribcage!</span>")
+
+	for(var/obj/item/alien_embryo/A in target)
+		A.loc = A.loc.loc
+
+
+//////////////////////////////////////////////////////////////////
 //	Organ mending surgery step
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/internal/fix_organ

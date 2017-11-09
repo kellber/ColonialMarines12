@@ -104,9 +104,14 @@
 	update_stats(H)
 
 /datum/species/xenos/handle_login_special(mob/living/carbon/human/H)
+	H.AddInfectionImages()
 	..()
 	if(H.nvg_vis)
 		H.client.color = COLOR_ALIEN_VISION
+
+/datum/species/xenos/handle_logout_special(mob/living/carbon/human/H)
+	H.RemoveInfectionImages()
+	..()
 
 /datum/species/xenos/proc/update_stats(mob/living/carbon/human/H)
 	var/datum/xeno_stats/XS = x_stats.GetCasteStats(caste_name)
