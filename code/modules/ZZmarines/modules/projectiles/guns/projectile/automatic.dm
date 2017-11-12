@@ -50,3 +50,53 @@
 /obj/item/projectile/bullet/rifle/m41
 	fire_sound = 'sound/marines/weapons/gunshot/gunshot_m41.ogg'
 	damage = 30
+
+// M39 SMG
+/obj/item/weapon/gun/projectile/automatic/m39
+	name = "M39 SMG"
+	desc = " Armat Battlefield Systems M39 SMG. Occasionally carried by light-infantry, scouts or non-combat personnel. Uses 9mm rounds."
+	icon = 'icons/marines/marine_weapons.dmi'
+	icon_override = 'icons/marines/marine_weapons.dmi'
+	icon_state = "m39"
+	item_state = "m39"
+	w_class = ITEM_SIZE_NORMAL
+	force = 10
+	caliber = "9mm"
+	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
+	slot_flags = SLOT_BELT
+	load_method = MAGAZINE
+	magazine_type = /obj/item/ammo_magazine/m39
+	allowed_magazines = /obj/item/ammo_magazine/m39
+
+	firemodes = list(
+		list(mode_name="semiauto",       burst=1,  fire_delay=0,    move_delay=null, one_hand_penalty=0, burst_accuracy=null, dispersion=null),
+		list(mode_name="3-round bursts", burst=3,  fire_delay=null, move_delay=6,    one_hand_penalty=1, burst_accuracy=list(0,-1,-1),       dispersion=list(0.0, 0.6, 1.0)),
+		list(mode_name="short bursts",   burst=5,  fire_delay=null, move_delay=6,    one_hand_penalty=2, burst_accuracy=list(0,-1,-1,-1,-2), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
+		list(mode_name="fullauto",       burst=-1, fire_delay=null, move_delay=null, one_hand_penalty=3, burst_accuracy=null, dispersion=null),
+		)
+
+/obj/item/weapon/gun/projectile/automatic/m39/update_icon()
+	icon_state = (ammo_magazine)? "m39" : "m39-e"
+	..()
+
+/obj/item/ammo_magazine/m39
+	name = "magazine (9mm)"
+	icon = 'icons/marines/marine_ammo.dmi'
+	icon_state = "m39_magazine"
+	mag_type = MAGAZINE
+	caliber = "9mm"
+	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	ammo_type = /obj/item/ammo_casing/m39
+	max_ammo = 48
+	multiple_sprites = 1
+
+/obj/item/ammo_casing/m39
+	desc = "A 9mm bullet casing"
+	caliber = "9mm"
+	projectile_type = /obj/item/projectile/bullet/rifle/m39
+	icon_state = "s-casing"
+	spent_icon = "s-casing-spent"
+
+/obj/item/projectile/bullet/rifle/m39
+	fire_sound = 'sound/marines/weapons/gunshot/gunshot_m39.ogg'
+	damage = 25
